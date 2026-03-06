@@ -31,10 +31,8 @@ function triggerParticleRise() {
 }
 
 const scene = new THREE.Scene();
-// 修改：深邃的黑色背景
-scene.background = new THREE.Color(0x050505);
-// 修改：黑色雾效，增强深邃感
-scene.fog = new THREE.FogExp2(0x050505, 0.015);
+scene.background = new THREE.Color(0x08081a);
+scene.fog = new THREE.FogExp2(0x08081a, 0.012);
 
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(8, 3, 15);
@@ -42,28 +40,17 @@ camera.position.set(8, 3, 15);
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-// 开启阴影映射以获得更好的金属质感（可选，视性能而定）
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-// 修改：暖色调环境光，模拟室内暖光
-// const ambientLight = new THREE.AmbientLight(0x403010, 0.6); 
-// scene.add(ambientLight);
-
-// 修改：主光源 - 强烈的金色光
-const pointLight1 = new THREE.PointLight(0xFFFFFF, 2.5, 40);
+const ambientLight = new THREE.AmbientLight(0x40406b);
+scene.add(ambientLight);
+const pointLight1 = new THREE.PointLight(0x6a4eff, 1.8, 40);
 pointLight1.position.set(6, 8, 8);
-pointLight1.castShadow = true;
 scene.add(pointLight1);
-
-// 修改：辅光源 - 暖白色光，增加层次
-const pointLight2 = new THREE.PointLight(0xFFFACD, 1.5, 30);
+const pointLight2 = new THREE.PointLight(0xff4da6, 1.2, 30);
 pointLight2.position.set(-7, 3, 10);
 scene.add(pointLight2);
-
-// 修改：背光 - 暗金色，勾勒轮廓
-const backLight = new THREE.PointLight(0xB8860B, 1.2);
+const backLight = new THREE.PointLight(0x3a2f8a, 1.0);
 backLight.position.set(0, 0, -15);
 scene.add(backLight);
 
@@ -88,13 +75,10 @@ function createParticleSystem() {
         
         velocities[i] = 0.02 + Math.random() * 0.06;
         
-        // 修改：生成金色/琥珀色/黄铜色的粒子
-        // Hue: 0.1 (橙) 到 0.15 (金黄)
-        const hue = 0.11 + (Math.random() * 0.08); 
+        const hue = 0.65 + (y / 18) * 0.3 + Math.random() * 0.1;
         const saturation = 0.6 + Math.random() * 0.4;
-        const lightness = 0.5 + Math.random() * 0.5; // 更亮一些
+        const lightness = 0.5 + Math.random() * 0.4;
         color.setHSL(hue, saturation, lightness);
-        
         colors[i*3] = color.r;
         colors[i*3+1] = color.g;
         colors[i*3+2] = color.b;
@@ -111,8 +95,7 @@ function createParticleSystem() {
     ctx.fillStyle = '#ffffff';
     ctx.beginPath(); ctx.arc(16, 16, 14, 0, Math.PI*2); ctx.fill();
     ctx.globalCompositeOperation = 'source-atop';
-    // 修改：粒子中心带一点暖黄
-    ctx.fillStyle = 'rgba(255, 220, 150, 0.9)';
+    ctx.fillStyle = 'rgba(200,200,255,0.9)';
     ctx.beginPath(); ctx.arc(16, 16, 8, 0, Math.PI*2); ctx.fill();
     const particleTexture = new THREE.CanvasTexture(canvas);
 
@@ -157,7 +140,16 @@ function updateParticlesUpward(points, isRising, delta, elapsedTime) {
         
         if (positions.array[idx + 1] > bounds.upperBound) {
             positions.array[idx + 1] = bounds.lowerBound;
+            // if (isRising) {
+            //     positions.array[idx] += (Math.random() - 0.5) * 0.3;
+            //     positions.array[idx + 2] += (Math.random() - 0.5) * 0.3;
+            // }
         }
+        
+        // if (isRising) {
+        //     positions.array[idx] += Math.sin(elapsedTime * 0.5 + i * 0.1) * 0.003;
+        //     positions.array[idx + 2] += Math.cos(elapsedTime * 0.3 + i * 0.1) * 0.003;
+        // }
     }
     
     positions.needsUpdate = true;
@@ -176,6 +168,7 @@ function createBackgroundParticles() {
         positions[i*3+1] = r * Math.sin(phi) * Math.sin(theta) * 0.5;
         positions[i*3+2] = r * Math.cos(phi);
         
+        // 背景粒子速度稍慢
         velocities[i] = 0.01 + Math.random() * 0.03;
     }
     
@@ -185,8 +178,7 @@ function createBackgroundParticles() {
     
     const mat = new THREE.PointsMaterial({
         size: 0.12,
-        // 修改：背景粒子改为淡金色
-        color: 0xD4AF37,
+        color: 0x99aaff,
         blending: THREE.AdditiveBlending,
         transparent: true,
         opacity: 0.4,
@@ -213,25 +205,19 @@ loader.load(
     HofmannKnot.traverse((child) => {
       if (child.isMesh) {
         child.material = new THREE.MeshStandardMaterial({
-          // 修改：纯白基底
           color: 0xffffff,
-          // 修改：极淡的金色自发光，营造“白中带金”的感觉
-          emissive: 0x1a1500, 
-          emissiveIntensity: 0.4,
+          emissive: 0x333333,
           wireframe: true,
-          // 修改：低金属度，中等粗糙度，像白色陶瓷或磨砂白金
-          metalness: 0.1,
-          roughness: 0.4
+          metalness: 0.3,
+          roughness: 0.5
         });
-        child.castShadow = true;
-        child.receiveShadow = true;
       }
     });
     HofmannKnot.scale.set(2, 2, 2);
     HofmannKnot.position.set(0, 1, 0);
     HofmannKnot.rotation.y = Math.PI / 4;
     scene.add(HofmannKnot);
-    console.log('✨ 白金香绳结加载成功！');
+    console.log('✨ 金色绳结加载成功！');
   },
   (xhr) => {
     console.log(`加载进度 ${(xhr.loaded / xhr.total * 100)}%`);
@@ -242,22 +228,18 @@ loader.load(
 );
 
 const orbitSpheres = []; 
-const sphereGeo = new THREE.SphereGeometry(0.18, 16, 16); // 增加细分使球体更圆
+const sphereGeo = new THREE.SphereGeometry(0.18, 10, 10);
 const sphereMat = new THREE.MeshStandardMaterial({ 
-    // 修改：金色球体
-    color: 0xD4AF37, 
-    // 淡淡的自发光，使其在暗部也能看到轮廓
-    emissive: 0x332200,
-    emissiveIntensity: 0.2,
-    roughness: 0.8, // 粗糙表面
-    metalness: 0.6  // 一定的金属感
+    color: 0x9f8eff, 
+    emissive: 0x332570,
+    roughness: 0.9,
+    metalness: 0.1
 });
 for (let i = 0; i < 10; i++) {
     const sphere = new THREE.Mesh(sphereGeo, sphereMat);
     const angle = (i / 10) * Math.PI * 2;
     const radius = 2.8;
     sphere.position.set(Math.cos(angle) * radius, 0.5 + Math.sin(angle*2)*0.4, Math.sin(angle) * radius);
-    sphere.castShadow = true;
     scene.add(sphere);
     orbitSpheres.push(sphere); 
 }
@@ -275,19 +257,9 @@ function createRoundedCard(width, height, depth, radius, color) {
     shape.quadraticCurveTo(-width/2, -height/2, -width/2 + radius, -height/2);
     const extrudeSettings = { depth: depth, bevelEnabled: false };
     const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-    
-    // 修改：卡片材质增加金属感和清晰度
     const material = new THREE.MeshPhysicalMaterial({
-        color: color, 
-        metalness: 0.3, 
-        roughness: 0.3, 
-        transparent: true, 
-        opacity: 0.9,
-        emissive: color, 
-        emissiveIntensity: 0.4, 
-        clearcoat: 1.0, 
-        clearcoatRoughness: 0.2, 
-        side: THREE.DoubleSide
+        color: color, metalness: 0.1, roughness: 0.2, transparent: true, opacity: 0.85,
+        emissive: color, emissiveIntensity: 0.7, clearcoat: 1.0, clearcoatRoughness: 0.2, side: THREE.DoubleSide
     });
     return new THREE.Mesh(geometry, material);
 }
@@ -295,14 +267,13 @@ function createRoundedCard(width, height, depth, radius, color) {
 const cardsGroup = new THREE.Group();
 const cardMeshes = [];
 
-// 修改：黑金系配色板 (黑、金、古铜、深褐、亮金)
 const colorPalette = [
-    0xD4AF37, // 经典金
-    0xC5A028, // 暗金
-    0xB8860B, // 古铜金
-    0xFDB931, // 亮金
-    0x1a1a1a, // 深黑灰 (带金色边框时会很好看)
-    0xE5C575  // 香槟金
+    0x6a4eff,
+    0xff4da6,
+    0x4facfe,
+    0xa18eff,
+    0xffaa66,
+    0x00f2ff
 ];
 
 async function init3DCards() {
@@ -475,10 +446,9 @@ blogCards.forEach(card => {
     card.addEventListener('click', (e) => {
         const title = card.dataset.title || '文章';
         const content = card.dataset.content || '暂无内容';
-        // 假设这些变量在全局已定义，如 modalTitle, modalContent, modal
-        if(typeof modalTitle !== 'undefined') modalTitle.innerText = title;
-        if(typeof modalContent !== 'undefined') modalContent.innerText = content;
-        if(typeof modal !== 'undefined') modal.classList.add('active');
+        modalTitle.innerText = title;
+        modalContent.innerText = content;
+        modal.classList.add('active');
         if (controls) controls.autoRotate = false;
     });
 });
@@ -510,7 +480,7 @@ function animate() {
         cardMeshes.forEach(card => {
             if (card.material) {
                 card.material.opacity = cardsTransition.currentOpacity;
-                card.material.emissiveIntensity = 0.4 * cardsTransition.currentOpacity;
+                card.material.emissiveIntensity = 0.7 * cardsTransition.currentOpacity;
             }
         });
     }
@@ -564,19 +534,19 @@ function animate() {
             if (hoveredCard !== object) {
                 if (hoveredCard && hoveredCard.material) {
                     hoveredCard.scale.set(1, 1, 1);
-                    hoveredCard.material.emissiveIntensity = 0.4 * cardsTransition.currentOpacity;
+                    hoveredCard.material.emissiveIntensity = 0.7 * cardsTransition.currentOpacity;
                 }
                 hoveredCard = object;
                 document.body.style.cursor = 'pointer';
                 if (hoveredCard.material) {
                     hoveredCard.scale.set(1.15, 1.15, 1.15);
-                    hoveredCard.material.emissiveIntensity = 1.2 * cardsTransition.currentOpacity;
+                    hoveredCard.material.emissiveIntensity = 1.8 * cardsTransition.currentOpacity;
                 }
             }
         } else {
             if (hoveredCard && hoveredCard.material) {
                 hoveredCard.scale.set(1, 1, 1);
-                hoveredCard.material.emissiveIntensity = 0.4 * cardsTransition.currentOpacity;
+                hoveredCard.material.emissiveIntensity = 0.7 * cardsTransition.currentOpacity;
                 hoveredCard = null;
                 document.body.style.cursor = 'default';
             }
@@ -584,7 +554,7 @@ function animate() {
     } else {
         if (hoveredCard && hoveredCard.material) {
             hoveredCard.scale.set(1, 1, 1);
-            hoveredCard.material.emissiveIntensity = 0.4;
+            hoveredCard.material.emissiveIntensity = 0.7;
             hoveredCard = null;
             document.body.style.cursor = 'default';
         }

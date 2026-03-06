@@ -34,10 +34,8 @@ html.no-scroll {
 body {
     font-family: 'Inter', sans-serif;
     overflow: hidden;
-    /* 修改：深邃的黑色背景 */
-    background-color: #050505;
-    /* 修改：暖白色文字 */
-    color: #f0f0e0;
+    background-color: #0a0a14;
+    color: #fff;
 }
 
 #canvas-container {
@@ -88,8 +86,7 @@ body {
     font-size: 4rem;
     font-weight: 600;
     letter-spacing: -0.02em;
-    /* 修改：黑金渐变文字 */
-    background: linear-gradient(135deg, #FFD700, #D4AF37, #FDB931);
+    background: linear-gradient(135deg, #aaccff, #c0b0ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -99,8 +96,7 @@ body {
 }
 
 .nav-logo p {
-    /* 修改：暗金色副标题 */
-    color: #C5A028;
+    color: #aaaaff;
     font-size: 0.9rem;
     opacity: 0.8;
     margin: 0;
@@ -113,16 +109,14 @@ body {
     gap: 4rem;
     backdrop-filter: blur(12px);
     padding: 0.5rem 12rem;
-    /* 修改：金色调阴影 */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     transform: translateY(-5px);
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .nav-menu a {
-    /* 修改：香槟色链接 */
-    color: #E5D6B0;
+    color: #e0e0ff;
     text-decoration: none;
     font-weight: 500;
     font-size: 1rem;
@@ -132,17 +126,14 @@ body {
 }
 
 .nav-menu a:hover {
-    color: #FFFFFF;
-    /* 修改：金色下划线 */
-    border-bottom-color: #FFD700;
+    color: #ffffff;
+    border-bottom-color: #8a6eff;
 }
 
 
 .global-nav.blog-mode {
-    /* 修改：深色半透明背景带微金光泽 */
-    background: linear-gradient(to bottom, rgba(20,20,20,0.8), rgba(0,0,0,0.6));
+    background: linear-gradient(to bottom, rgba(10,10,25,0.7), rgba(0,0,0,0.3));
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
 }
 
 .global-nav.blog-mode .nav-logo {
@@ -155,7 +146,7 @@ body {
 
 .global-nav.blog-mode .nav-logo p {
     font-size: 0.75rem;
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 .global-nav.blog-mode .nav-menu {
@@ -164,7 +155,6 @@ body {
     transform: translateY(0);
 }
 
-/* 重复定义合并优化 */
 .global-nav.blog-mode .nav-menu {
     display: flex;
     opacity: 1;
@@ -178,16 +168,13 @@ body {
     transform: translate(-50%, -50%) scale(0.9);
     width: 90%;
     max-width: 1400px;
-    /* 修改：深炭黑背景 */
-    background: rgba(18, 18, 18, 0.95);
+    background: rgba(25, 25, 40, 0.9);
     backdrop-filter: blur(24px);
-    /* 修改：金色边框 */
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    border: 1px solid rgba(255,255,255,0.2);
     border-radius: 36px;
     padding: 2.5rem;
-    color: #f0f0e0;
-    /* 修改：金色光晕阴影 */
-    box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(212, 175, 55, 0.2) inset;
+    color: #f0f0ff;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(138, 110, 255, 0.3) inset;
     opacity: 0;
     visibility: hidden;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -216,15 +203,13 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
-    /* 修改：金色分割线 */
-    border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+    border-bottom: 1px solid rgba(138, 110, 255, 0.4);
     padding-bottom: 1rem;
 }
 #modal-title {
     font-size: 2rem;
     font-weight: 600;
-    /* 修改：白到金的渐变标题 */
-    background: linear-gradient(to right, #fff, #FFE57C);
+    background: linear-gradient(to right, #fff, #cfc4ff);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -234,28 +219,21 @@ body {
     font-size: 2rem;
     line-height: 1;
     cursor: pointer;
-    /* 修改：暗金色按钮 */
-    color: #C5A028;
-    transition: color 0.2s, background 0.2s;
-    background: rgba(255,215,0,0.05);
+    color: #aaaaff;
+    transition: color 0.2s;
+    background: rgba(255,255,255,0.05);
     width: 44px;
     height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    border: 1px solid rgba(255,255,255,0.1);
 }
-.close-btn:hover { 
-    color: #FFFFFF; 
-    /* 修改：悬停时更亮的金色背景 */
-    background: rgba(212, 175, 55, 0.2); 
-    border-color: #FFD700;
-}
+.close-btn:hover { color: #ffffff; background: rgba(138,110,255,0.2); }
 #modal-content {
     line-height: 1.8;
-    /* 修改：浅米色内容文字 */
-    color: #E0D8C0;
+    color: #d0d0ff;
     margin-bottom: 2rem;
     font-size: 1rem;
 }
@@ -292,15 +270,13 @@ body {
     display: flex;
     align-items: center;
     gap: 2rem;
-    /* 修改：深色卡片背景 */
-    background: rgba(20, 20, 20, 0.6);
+    background: rgba(20, 20, 35, 0.6);
     backdrop-filter: blur(12px);
     border-radius: 40px;
     padding: 2rem 2.5rem;
     margin-bottom: 4rem;
-    /* 修改：金色边框 */
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     transform: translateY(-30px);
     opacity: 0;
     transition: transform 0.6s ease 0.1s, opacity 0.6s ease 0.1s;
@@ -312,47 +288,37 @@ body {
 .avatar {
     width: 100px;
     height: 100px;
-    /* 修改：黑金渐变头像背景 */
-    background: linear-gradient(145deg, #2b2210, #1a1a1a);
+    background: linear-gradient(145deg, #3a2a6a, #1e1e3f);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 3rem;
     font-weight: 600;
-    color: #FFD700;
-    /* 修改：金色边框和光晕 */
-    border: 3px solid rgba(212, 175, 55, 0.8);
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+    color: rgba(255,255,255,0.9);
+    border: 3px solid rgba(180, 160, 255, 0.8);
+    box-shadow: 0 0 30px #6d5fcf55;
 }
 .profile-info h1 {
     font-size: 2.4rem;
     font-weight: 600;
     margin-bottom: 0.25rem;
-    /* 修改：白到金渐变名字 */
-    background: linear-gradient(to right, #fff, #FFE57C);
+    background: linear-gradient(to right, #fff, #cfc4ff);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 .profile-info .bio {
     font-size: 1.1rem;
-    /* 修改：浅金色简介 */
-    color: #D4C5A3;
+    color: #cfd0ff;
     margin-bottom: 0.5rem;
 }
 .social-links a {
-    /* 修改：金色链接 */
-    color: #C5A028;
+    color: #bbbbff;
     margin-right: 1.2rem;
     text-decoration: none;
     font-size: 0.95rem;
-    border-bottom: 1px dotted rgba(212, 175, 55, 0.5);
-    transition: color 0.2s;
-}
-.social-links a:hover {
-    color: #FFD700;
-    border-bottom-color: #FFD700;
+    border-bottom: 1px dotted;
 }
 
 .section-title {
@@ -361,11 +327,9 @@ body {
     margin-top: 2rem;
     margin-bottom: 2rem;
     letter-spacing: -0.02em;
-    /* 修改：金色左侧边框 */
-    border-left: 6px solid #D4AF37;
+    border-left: 6px solid #8a6eff;
     padding-left: 1.5rem;
-    /* 修改：金色背景渐变 */
-    background: linear-gradient(90deg, rgba(212,175,55,0.15), transparent);
+    background: linear-gradient(90deg, rgba(138,110,255,0.2), transparent);
 }
 
 .blog-grid {
@@ -388,29 +352,25 @@ body {
     height: 100%;
     padding: 2rem;
     overflow: hidden;
-    /* 修改：深色卡片背景 */
-    background: rgba(25, 25, 25, 0.6);
+    background: rgba(25, 25, 40, 0.6);
     backdrop-filter: blur(10px);
     border-radius: 28px;
     padding: 1.8rem;
-    /* 修改：微弱金色边框 */
-    border: 1px solid rgba(212, 175, 55, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0 10px 30px -15px rgba(0,0,0,0.5);
     cursor: pointer;
 }
 .blog-card:hover {
     transform: translateY(-8px);
-    /* 修改：金色光晕阴影 */
-    box-shadow: 0 25px 40px -10px rgba(212, 175, 55, 0.25);
-    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 25px 40px -10px #3a2f9b55;
+    border-color: rgba(160, 140, 255, 0.4);
 }
 .card-category {
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    /* 修改：暗金色分类标签 */
-    color: #A88E2F;
+    color: #ada7ff;
     margin-bottom: 0.8rem;
 }
 .card-title {
@@ -418,11 +378,9 @@ body {
     font-weight: 600;
     margin-bottom: 0.8rem;
     line-height: 1.3;
-    color: #F0E6D0;
 }
 .card-excerpt {
-    /* 修改：浅灰色摘要 */
-    color: #C0C0B0;
+    color: #cfd2f0;
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
 }
@@ -431,40 +389,33 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* 修改：暗金色元数据 */
-    color: #A88E2F;
+    color: #aaaaff;
     font-size: 0.85rem;
-    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    border-top: 1px solid rgba(255,255,255,0.1);
     padding-top: 1rem;
 }
 .read-more {
-    color: #050505; /* 黑色文字在金色背景上 */
+    color: white;
     text-decoration: none;
     font-weight: 600;
-    /* 修改：金色渐变按钮 */
-    background: linear-gradient(90deg, #D4AF37, #FFD700);
+    background: linear-gradient(90deg, #6d5fcf, #a18eff);
     padding: 0.4rem 1.2rem;
     border-radius: 40px;
     font-size: 0.9rem;
-    border: 1px solid rgba(255,215,0,0.3);
-    transition: background 0.2s, transform 0.2s;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: background 0.2s;
     pointer-events: none;
-}
-.blog-card:hover .read-more {
-    /* 悬停时按钮稍微变亮 */
-    background: linear-gradient(90deg, #FFD700, #FDB931);
 }
 
 footer {
     margin-top: 3rem;
     padding: 2rem 0;
     text-align: center;
-    /* 修改：暗金色页脚文字 */
-    color: #887755;
+    color: #aaaacc;
     font-size: 0.9rem;
-    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    border-top: 1px solid rgba(255,255,255,0.1);
     backdrop-filter: blur(5px);
-    background-color: rgba(5, 5, 5, 0.5);
+    background-color: rgba(5, 5, 15, 0.3);
     border-radius: 30px 30px 0 0;
 }
 
@@ -498,8 +449,7 @@ footer {
 }
 
 .footer-nav a {
-    /* 修改：页脚链接颜色 */
-    color: #A88E2F;
+    color: #a0a0b0;
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
@@ -509,9 +459,8 @@ footer {
 }
 
 .footer-nav a:hover {
-    color: #FFD700;
+    color: #ffffff;
     transform: translateY(-2px);
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
 }
 
 .footer-nav a:not(:last-child)::after {
@@ -547,8 +496,7 @@ footer {
     
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    /* 修改：更深的不透明度以突出金色内容 */
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.6);
     z-index: 39;
 }
 
