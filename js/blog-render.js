@@ -324,7 +324,8 @@ if (typeof THREE.OrbitControls !== 'undefined') {
     controls.autoRotateSpeed = 1.0;
     controls.enableZoom = false;
     controls.enablePan = true;
-    controls.maxPolarAngle = Math.PI / 2;
+    controls.maxPolarAngle = Math.PI * 2 / 3; 
+    controls.minPolarAngle = Math.PI / 3;
     controls.minDistance = 5;
     controls.maxDistance = 30;
     controls.target.set(0, 0.8, 0);

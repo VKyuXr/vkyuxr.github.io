@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const animateCursor = () => {
-        ringX += (mouseX - ringX) * 0.15;
-        ringY += (mouseY - ringY) * 0.15;
+        ringX += (mouseX - ringX) * 0.2;
+        ringY += (mouseY - ringY) * 0.2;
         
         cursorRing.style.left = `${ringX}px`;
         cursorRing.style.top = `${ringY}px`;
