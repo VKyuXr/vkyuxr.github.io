@@ -586,3 +586,28 @@ function animate() {
 }
 
 animate();
+
+const cursorDot = document.getElementById('cursor-dot');
+const cursorRing = document.getElementById('cursor-ring');
+
+if (controls && typeof controls.addEventListener === 'function') {
+    console.log('[Cursor] 成功绑定 OrbitControls 事件监听器');
+
+    controls.addEventListener('start', () => {
+        console.log('[Cursor] 事件: start (用户开始拖动)');
+        cursorDot.style.opacity = "0";
+        cursorRing.style.opacity = "0";
+    });
+    
+    controls.addEventListener('end', () => {
+        console.log('[Cursor] 事件: end (用户停止拖动)，计划 100ms 后恢复光标...');
+        
+        setTimeout(() => {
+            console.log('[Cursor] 计时器到期 -> 执行恢复光标');
+            cursorDot.style.opacity = "1";
+            cursorRing.style.opacity = "1";
+        }, 100);
+    });
+} else {
+    console.error('[Cursor] 错误: controls 对象未定义或不支持 addEventListener，光标隐藏功能已禁用');
+}
