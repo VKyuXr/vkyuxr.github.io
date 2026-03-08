@@ -98,7 +98,7 @@ function createParticleSystem() {
     const particleTexture = new THREE.CanvasTexture(canvas);
 
     const mat = new THREE.PointsMaterial({
-        size: 0.22,
+        size: 0.20,
         map: particleTexture,
         vertexColors: true,
         blending: THREE.AdditiveBlending,
@@ -165,7 +165,7 @@ function createBackgroundParticles() {
     geo.setAttribute('velocity', new THREE.BufferAttribute(velocities, 1));
     
     const mat = new THREE.PointsMaterial({
-        size: 0.12,
+        size: 0.15,
         color: 0x99aaff,
         blending: THREE.AdditiveBlending,
         transparent: true,
@@ -245,8 +245,16 @@ function createRoundedCard(width, height, depth, radius, color) {
     const extrudeSettings = { depth: depth, bevelEnabled: false };
     const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
     const material = new THREE.MeshPhysicalMaterial({
-        color: color, metalness: 0.1, roughness: 0.2, transparent: true, opacity: 0.85,
-        emissive: color, emissiveIntensity: 0.7, clearcoat: 1.0, clearcoatRoughness: 0.2, side: THREE.DoubleSide
+        color: color,
+        metalness: 0.1,
+        roughness: 0.9,
+        transparent: true,
+        opacity: 0.85,
+        emissive: color,
+        emissiveIntensity: 0.7,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.2,
+        side: THREE.DoubleSide
     });
     return new THREE.Mesh(geometry, material);
 }
@@ -375,26 +383,52 @@ function showBlogView() {
     if (isBlogViewActive) return;
     isBlogViewActive = true;
     
+    // 1. 触发卡片消失动画
     cardsTransition.targetOpacity = 0;
     cardsTransition.targetVisible = false;
     
+    // 2. 显示博客主视图
     blogMainView.classList.add('active');
-    if (controls) controls.autoRotate = false;
-    globalBar.classList.add('blog-mode');
+    
+    // 3. 【新增】添加模糊类到 body，触发 CSS transition
+    document.body.classList.add('blog-mode-active');
+    
+    // 4. 更新 UI 状态
+    if (globalBar) globalBar.classList.add('blog-mode');
+    
+    // 5. 停止或减慢 3D 自动旋转 (可选，提升阅读体验)
+    if (controls) {
+        controls.autoRotate = false;
+        // 也可以选择完全停止 damping 以获得静止背景
+        // controls.enableDamping = false; 
+    }
+    
+    // 允许页面滚动
+    document.body.style.overflow = 'auto'; 
+    // 注意：你之前的代码在 show3DView 里设置了 overflow: hidden，
+    // 这里需要确保切回来时可以滚动。
 }
 
 function show3DView() {
     if (!isBlogViewActive) return;
     isBlogViewActive = false;
     
+    // 1. 恢复卡片显示
     cardsTransition.targetOpacity = 1;
     cardsTransition.targetVisible = true;
     cardsGroup.visible = true;
     
+    // 2. 隐藏博客主视图
     blogMainView.classList.remove('active');
-    document.body.style.overflow = 'hidden';
+    
+    // 3. 【新增】移除模糊类，背景变清晰
+    document.body.classList.remove('blog-mode-active');
+    
+    // 4. 恢复 3D 交互
+    document.body.style.overflow = 'hidden'; // 禁止滚动，沉浸体验
     if (controls) controls.autoRotate = true;
-    globalBar.classList.remove('blog-mode');
+    
+    if (globalBar) globalBar.classList.remove('blog-mode');
 }
 
 let isScrolling = false;

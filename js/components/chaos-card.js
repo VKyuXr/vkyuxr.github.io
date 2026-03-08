@@ -10,12 +10,12 @@ export class ChaosCard {
         this.config = {
             text: rootElement.dataset.text || rootElement.dataset.title || "ChaosCard",
             baseColor: rootElement.dataset.color || "rgba(140, 255, 220, 0.15)",
-            maxMove: parseFloat(rootElement.dataset.move) || 1.0,
+            maxMove: parseFloat(rootElement.dataset.move) || 2.0,
             maxScale: parseFloat(rootElement.dataset.scaleMax) || 1.2,
             minScale: parseFloat(rootElement.dataset.scaleMin) || 0.8,
             speedMultiplier: parseFloat(rootElement.dataset.speed) || 1.0,
             blurAmount: parseFloat(rootElement.dataset.blur) || 1.0,
-            zIndex: parseInt(rootElement.dataset.bgZIndex) || 0, // 背景层级
+            zIndex: parseInt(rootElement.dataset.bgZIndex) || 0,
             ...options
         };
 
@@ -108,8 +108,8 @@ export class ChaosCard {
             style.textContent = `
                 .chaos-card-hover-effect:hover {
                     transform: translateY(-6px) !important;
-                    border-color: rgba(80, 180, 255, 0.4) !important;
-                    box-shadow: 0 12px 35px rgba(0, 120, 255, 0.2) !important;
+                    border-color: rgba(160, 140, 255, 0.4) !important;
+                    box-shadow: 0 12px 35px #3a2f9b55 !important;
                 }
             `;
             document.head.appendChild(style);
