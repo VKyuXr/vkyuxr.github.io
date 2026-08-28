@@ -1,0 +1,115 @@
+/* ========================================
+   Markdown Content — Retro Magazine Style
+   ======================================== */
+
+#modalContent h1,
+#modalContent h2,
+#modalContent h3 {
+    font-family: 'Rondal', 'Times New Roman', serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.25;
+    margin: 2rem 0 1rem;
+    color: #000;
+}
+#modalContent h1 { font-size: 1.5rem; border-bottom: 1px solid #000; padding-bottom: 0.5rem; }
+#modalContent h2 { font-size: 1.2rem; }
+#modalContent h3 { font-size: 1.05rem; }
+
+#modalContent p {
+    margin: 0 0 1.2rem;
+    font-family: 'Rondal', 'Times New Roman', serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.8;
+}
+
+#modalContent a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid #000;
+}
+#modalContent a:hover {
+    opacity: 0.5;
+}
+
+#modalContent strong {
+    font-weight: 700;
+}
+
+#modalContent em {
+    font-style: italic;
+}
+
+#modalContent blockquote {
+    margin: 1.5rem 0;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    border-left: 2px solid #000;
+    font-style: italic;
+}
+
+#modalContent ul,
+#modalContent ol {
+    margin: 0 0 1.5rem 1.5rem;
+    padding: 0;
+}
+#modalContent li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+}
+
+#modalContent code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    background: #f5f5f5;
+    padding: 0.15em 0.4em;
+    border: 1px solid #ddd;
+}
+
+#modalContent pre {
+    background: #fafafa;
+    border: 1px solid #000;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+#modalContent pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+}
+
+#modalContent hr {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 2rem 0;
+}
+
+#modalContent img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border: 1px solid #000;
+}
+
+#modalContent table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.85rem;
+}
+#modalContent th,
+#modalContent td {
+    border: 1px solid #000;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+}
+#modalContent th {
+    font-family: 'Rondal', 'Times New Roman', serif;
+    font-weight: 700;
+    background: #fafafa;
+}

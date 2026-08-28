@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>REVERSE — A Journal of Notes</title>
+
+    <link rel="stylesheet" href="css/page-style.css">
+    <link rel="stylesheet" href="css/markdown-style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+</head>
+<body>
+
+    <!-- Masthead -->
+    <header class="masthead">
+        <div class="masthead-rule">
+            <span class="masthead-rule-dot">&#9670;</span>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <a href="#">Home</a>
+        <a href="#articles">Articles</a>
+        <a href="https://github.com/VKyuXr" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+
+    <!-- Article Overlay -->
+    <div id="articleOverlay"></div>
+
+    <!-- Article Modal (slide-in panel) -->
+    <div id="articleModal">
+        <div class="modal-header">
+            <div id="modalTitle">Loading&hellip;</div>
+            <button class="modal-close" onclick="window.closeArticle()" title="Close">&times;</button>
+        </div>
+        <div id="modalContent">Loading article&hellip;</div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Profile -->
+        <section class="profile-block">
+            <div class="profile-avatar">VKX</div>
+            <div>
+                <div class="profile-name">VKyuXr</div>
+                <a href="https://github.com/VKyuXr" target="_blank" rel="noopener noreferrer" class="profile-link">GitHub &rarr;</a>
+            </div>
+        </section>
+
+        <hr class="section-rule">
+
+        <!-- Featured / Pinned -->
+        <div class="section-title">Featured</div>
+        <div class="featured-grid" id="blogGrid"></div>
+
+        <hr class="section-rule" id="articles">
+
+        <!-- Article List -->
+        <div class="section-title">Articles</div>
+        <div class="article-list" id="blogList"></div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="footer-ornament">&#9670;</div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">&uarr;</button>
+
+    <script src="js/blog-loader.js"></script>
+</body>
+</html>

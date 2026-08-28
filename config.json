@@ -1,0 +1,27 @@
+{
+  "top":
+  [
+    {
+      "title": "Blender渲染",
+      "date": "2026-08-22",
+      "category": "使用Blender渲染的一些图片",
+      "excerpt": "写于2026年3月7日",
+      "file": "articles/Blender渲染.md"
+    }
+  ],
+  "list":
+  [
+    {
+      "title": "Ubuntu下Intel无线网卡驱动安装",
+      "date": "2023-07-17",
+      "excerpt": "在Ubuntu操作系统下，进行Intel无线网卡的驱动安装",
+      "file": "articles/Ubuntu下Intel无线网卡驱动安装.md"
+    },
+    {
+      "title": "使用PowerShell清除重复文件",
+      "date": "2023-07-12",
+      "excerpt": "使用PowerShell清除重复文件",
+      "file": "articles/使用PowerShell清除重复文件.md"
+    }
+  ]
+}
